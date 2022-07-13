@@ -1,3 +1,5 @@
+@import './theme.scss';
+
 body {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
@@ -9,7 +11,8 @@ body {
 *:before,
 *:after {
 	box-sizing: border-box;
-	font-family: 'Mark-Book', sans-serif;
+	color: $color-secondary;
+	font-family: $font-family-secondary;
 	margin: 0;
 	padding: 0;
 }
@@ -49,4 +52,11 @@ button {
 	background: transparent;
 	border: 0;
 	outline: 0;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	width: 100%;
 }
