@@ -1,0 +1,48 @@
+@import '../../../styles/theme.scss';
+
+.button {
+	align-items: center;
+	border-radius: 0.125rem;
+	display: flex;
+	font-family: $font-family-primary;
+	font-size: 1rem;
+	gap: 0.5rem;
+	justify-content: center;
+	padding: 0.75rem 1.5rem;
+	transition: all 0.48s ease-in-out;
+
+	&__disabled {
+		background-color: $color-secondary-superlight;
+		color: $color-secondary-light;
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+
+	&__loading {
+		background-color: $color-secondary-superlight;
+		color: $color-secondary-light;
+		cursor: progress;
+		pointer-events: none;
+	}
+
+	&__primary {
+		background-color: $color-secondary;
+		color: $color-white;
+	}
+
+	&__secondary {
+		color: $color-secondary;
+
+		&:hover {
+			background-color: $color-secondary-ultralight;
+		}
+	}
+
+	&__tertiary {
+		color: $color-primary;
+
+		&:hover {
+			background-color: $color-secondary-ultralight;
+		}
+	}
+}

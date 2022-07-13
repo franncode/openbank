@@ -1,0 +1,11 @@
+.card {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 21rem;
+
+	.description {
+		text-align: center;
+	}
+}

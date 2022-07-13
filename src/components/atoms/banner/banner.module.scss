@@ -1,0 +1,17 @@
+@import '../../../styles/theme.scss';
+
+.banner {
+	display: flex;
+	gap: 1rem;
+
+	.texts {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		.title {
+			font-family: $font-family-primary;
+			font-size: 1.5rem;
+		}
+	}
+}

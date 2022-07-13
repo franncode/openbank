@@ -1,0 +1,62 @@
+@import '../../../styles/theme.scss';
+
+.steps {
+	align-items: center;
+	background-color: $color-secondary-superlight;
+	display: flex;
+	justify-content: center;
+	padding: 1rem 0;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	width: 100%;
+
+	.list {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+
+		.item {
+			align-items: center;
+			border-radius: 2rem;
+			color: $color-white;
+			display: flex;
+			justify-content: center;
+
+			&__completed {
+				background-color: $color-primary;
+				height: 2rem;
+				width: 2rem;
+			}
+
+			&__current {
+				background-color: $color-secondary;
+				height: 3rem;
+				width: 3rem;
+			}
+
+			&__previous {
+				background-color: $color-secondary-light;
+				height: 2rem;
+				width: 2rem;
+			}
+		}
+
+		.line {
+			width: 1.5rem;
+
+			> hr {
+				border: none;
+			}
+
+			&__completed {
+				border: 0.125rem solid $color-primary;
+			}
+
+			&__previous {
+				border: 0.125rem solid $color-secondary-light;
+			}
+		}
+	}
+}
