@@ -1,0 +1,16 @@
+@import '../../../styles/theme.scss';
+
+.logo {
+	max-width: 100%;
+}
+
+.banner {
+	background-color: $color-secondary-ultralight;
+	border-radius: 0.25rem;
+	padding: 2rem;
+}
+
+.button {
+	max-width: 33rem;
+	width: 100%;
+}

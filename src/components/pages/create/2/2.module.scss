@@ -1,0 +1,47 @@
+@import '../../../../styles/theme.scss';
+@import '../1/1.module.scss';
+
+.section {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	width: 100%;
+
+	.input {
+		max-width: 32rem;
+	}
+}
+
+.passwords {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+
+	.input {
+		width: 15rem;
+		max-width: 100%;
+	}
+}
+
+.label {
+	display: flex;
+	gap: 0.5rem;
+
+	> p {
+		font-family: $font-family-primary;
+	}
+}
+
+@media screen and (max-width: 36rem) {
+	.section {
+		.input {
+			width: 100%;
+		}
+	}
+
+	.passwords {
+		.input {
+			width: 100%;
+		}
+	}
+}
