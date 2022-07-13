@@ -1,0 +1,18 @@
+@import '../../../styles/theme.scss';
+
+.blank {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	gap: 4rem;
+	justify-content: center;
+	padding: 2rem 4rem;
+	width: 100%;
+}
+
+@media screen and (max-width: 48rem) {
+	.blank {
+		padding: 2rem 1rem;
+	}
+}
