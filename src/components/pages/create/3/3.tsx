@@ -3,11 +3,12 @@ import { color_primary } from '../../../../styles/theme'
 import { Banner } from '../../../atoms/banner/banner'
 import { Icon } from '../../../atoms/icon/icon'
 import { Stepper } from '../../../templates/stepper/stepper'
-import { useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { TBanner } from '../../../atoms/banner/banner.types'
 
 export const Three: FC = () => {
-	let [searchParams] = useSearchParams()
+	const [searchParams] = useSearchParams()
+	const { language } = useParams()
 
 	const bannerProps: TBanner =
 		searchParams.get('status') === 'success'
@@ -51,7 +52,7 @@ export const Three: FC = () => {
 				{
 					...buttonProps,
 					link: {
-						to: '/',
+						to: `/${language}`,
 					},
 					type: 'tertiary',
 				},

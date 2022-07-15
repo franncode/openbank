@@ -6,68 +6,78 @@ import { Icon } from '../../../atoms/icon/icon'
 import { Cards } from '../../../molecules/cards/cards'
 import { Stepper } from '../../../templates/stepper/stepper'
 import styles from './1.module.scss'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 export const One: FC = () => {
-	const cards = [
-		{
-			image: {
-				src: head,
-				alt: 'Head with gears',
-			},
-			description:
-				'Guarda aquí todas tus contraseñas, datos o cualquier informacion, olvida las notas de papel y las aplicaciones no protegidas.',
-		},
-		{
-			image: {
-				src: safe,
-				alt: 'Safe and padlock',
-			},
-			description:
-				'Crea tu clave maestra: solo tú podrás acceder a tus secretos con ella.',
-		},
-	]
+	const { t } = useTranslation()
+	const navigate = useNavigate()
 
 	return (
 		<Stepper
 			head={{
-				title: 'Password Manager | ¿Qué es Password Manager?',
+				title: `Password Manager | ${t('What is Password Manager?')}`,
 			}}
 			buttons={[
 				{
-					children: 'Cancelar',
-					link: {
-						to: '/',
-					},
+					children: t('Cancel') as string,
+					onClick: () => navigate(-1),
 					type: 'secondary',
 				},
 				{
 					children: (
 						<Fragment>
-							Siguiente
+							{t('Next') as string}
 							<Icon code='navigate_next' color={color_white} />
 						</Fragment>
 					),
 					link: {
-						to: '/create/2',
+						to: `../2`,
 					},
 					type: 'primary',
 				},
 			]}
 			current={1}
-			title='Crea tu Password Manager'
+			title={t('Create your Password Manager')}
 		>
-			<Cards cards={cards} className={styles.cards} />
+			<Cards
+				cards={[
+					{
+						image: {
+							src: head,
+							alt: 'Head with gears',
+						},
+						description: t(
+							'Save here all your passwords, data or any information, forget paper notes and unprotected applications.'
+						),
+					},
+					{
+						image: {
+							src: safe,
+							alt: 'Safe and padlock',
+						},
+						description: t(
+							'Create your master key: only you can access your secrets with it.'
+						),
+					},
+				]}
+				className={styles.cards}
+			/>
 			<p className={styles.texts}>
-				<b>Cómo funciona</b>
-				En primer lugar, debes crear una contraseña diferente para sus
-				pertenencias electrónicas. No podrás recuperar tu contraseña, asi que
-				recuérdala bien.
+				<b>{t('How does it work') as string}</b>
+				{
+					t(
+						'First of all, you need to create a different password for your electronic belongings. You will not be able to recover your password, so remember it well.'
+					) as string
+				}
 			</p>
 			<p className={styles.texts}>
-				<b>Qué datos puedes guardar</b>
-				Por ejemplo, el número de tu tarjeta, el PIN y el PUK de tu teléfono
-				móvil, el número de serie de alguno de tus dispositivos o cualquier
-				infomación que necesites tener en lugar seguro.
+				<b>{t('What data can you save') as string}</b>
+				{
+					t(
+						'For example, your card number, the PIN and PUK of your mobile phone, the serial number of one of your devices or any information you need to have in a safe place.'
+					) as string
+				}
 			</p>
 		</Stepper>
 	)
