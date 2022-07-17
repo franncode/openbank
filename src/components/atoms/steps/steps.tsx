@@ -14,7 +14,7 @@ export const Steps: FC<TSteps> = ({ current, steps }) => {
 					const isPrevious = number <= current
 
 					return (
-						<Fragment>
+						<Fragment key={number}>
 							{number !== 1 && (
 								<li
 									className={`${styles.line} ${
@@ -32,7 +32,6 @@ export const Steps: FC<TSteps> = ({ current, steps }) => {
 										? styles.item__current
 										: styles.item__previous
 								}`}
-								key={number}
 							>
 								{isCompleted ? (
 									<Icon code='done' color={color_white} />

@@ -6,22 +6,32 @@ import { Blank } from '../../templates/blank/blank'
 import logo from '../../../assets/components/pages/home/logo.svg'
 import styles from './notFound.module.scss'
 import { Banner } from '../../atoms/banner/banner'
+import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
-export const NotFound = () => (
-	<Blank
-		head={{
-			title: 'Password Manager | Welcome',
-		}}
-	>
-		<img className={styles.logo} src={logo} alt='Logo' />
-		<Banner
-			className={styles.banner}
-			description='Esta pagina no existe o ha sido removida, te sugerimos volver al inicio.'
-			title='Pagina no encontrada'
-			type='warning'
-		/>
-		<Button className={styles.button} link={{ to: '/' }}>
-			Ir al inicio <Icon code='navigate_next' color={color_white} />
-		</Button>
-	</Blank>
-)
+export const NotFound = () => {
+	const { language } = useParams()
+	const { t } = useTranslation()
+
+	return (
+		<Blank
+			head={{
+				title: 'Password Manager',
+			}}
+		>
+			<img className={styles.logo} src={logo} alt='Logo' />
+			<Banner
+				className={styles.banner}
+				description={t(
+					'This page does not exist or has been removed, we suggest you return to the beginning.'
+				)}
+				title={t('Page not found')}
+				type='warning'
+			/>
+			<Button className={styles.button} link={{ to: `/${language}` }}>
+				{t('Go to start') as string}
+				<Icon code='navigate_next' color={color_white} />
+			</Button>
+		</Blank>
+	)
+}
