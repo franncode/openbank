@@ -27,9 +27,9 @@ ReactDOM.render(
 					<Route path='1' element={<One />} />
 					<Route path='2' element={<Two />} />
 					<Route path='3' element={<Three />} />
-					<Route path='not-found' element={<NotFound />} />
 				</Route>
-				<Route path='*' element={<Navigate to='/not-found' />} />
+				<Route path='not-found' element={<NotFound />} />
+				<Route path='*' element={<Navigate to='not-found' />} />
 			</Route>
 		</Routes>
 	</BrowserRouter>,

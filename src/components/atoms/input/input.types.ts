@@ -1,12 +1,13 @@
-import { ReactNode } from 'react'
+import { DetailedHTMLProps, ReactNode } from 'react'
+import { TIcon } from '../icon/icon.types'
 
-export type TInput = {
+export type TInput = DetailedHTMLProps<
+	React.InputHTMLAttributes<HTMLInputElement>,
+	HTMLInputElement
+> & {
 	className?: string
+	error?: string
+	icon?: TIcon
 	label?: ReactNode
-	name?: string
-	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-	placeholder?: string
-	type?: string
-	value: string
 	width?: string
 }
