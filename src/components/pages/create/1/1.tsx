@@ -22,7 +22,7 @@ export const One: FC = () => {
 				{
 					children: t('Cancel'),
 					onClick: () => navigate(-1),
-					type: 'secondary',
+					variant: 'secondary',
 				},
 				{
 					children: (
@@ -34,7 +34,6 @@ export const One: FC = () => {
 					link: {
 						to: `../2`,
 					},
-					type: 'primary',
 				},
 			]}
 			current={1}

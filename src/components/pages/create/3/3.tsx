@@ -59,7 +59,7 @@ export const Three: FC = () => {
 					link: {
 						to: `/${language}`,
 					},
-					type: 'tertiary',
+					variant: 'tertiary',
 				},
 			]}
 			current={3}

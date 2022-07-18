@@ -33,6 +33,7 @@ export const Two: FC = () => {
 			value: '',
 		},
 	})
+	const isLoading = status === 'loading'
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target
@@ -150,14 +151,15 @@ export const Two: FC = () => {
 				{
 					children: t('Back'),
 					onClick: () => navigate(-1),
-					type: 'secondary',
+					variant: 'secondary',
 				},
 				{
 					children: (
 						<Fragment>
-							{status === 'loading' ? t('Loading...') : t('Next')}
+							{isLoading ? t('Loading') : t('Next')}
 							<Icon
-								code='navigate_next'
+								className={isLoading ? styles.loading : ''}
+								code={isLoading ? 'autorenew' : 'navigate_next'}
 								color={
 									status === 'idle'
 										? theme.color.white
@@ -167,12 +169,11 @@ export const Two: FC = () => {
 						</Fragment>
 					),
 					onClick: handleNext,
-					type:
-						status === 'loading'
-							? 'loading'
-							: status === 'disabled'
-							? 'disabled'
-							: 'primary',
+					variant: isLoading
+						? 'loading'
+						: status === 'disabled'
+						? 'disabled'
+						: 'primary',
 				},
 			]}
 			current={2}
@@ -188,7 +189,7 @@ export const Two: FC = () => {
 					<Input
 						className={styles.input}
 						icon={{
-							code: 'visibility',
+							code: password.first.show ? 'visibility_off' : 'visibility',
 							color: theme.color.secondary_superlight,
 							onClick: handleShowPassword('first'),
 						}}
@@ -202,7 +203,7 @@ export const Two: FC = () => {
 					<Input
 						className={styles.input}
 						icon={{
-							code: 'visibility',
+							code: password.second.show ? 'visibility_off' : 'visibility',
 							color: theme.color.secondary_superlight,
 							onClick: handleShowPassword('second'),
 						}}

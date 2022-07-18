@@ -41,11 +41,11 @@ export const Home = () => {
 				</Button>
 			</section>
 			<section className={styles.languages}>
-				<Button onClick={handleClick('es')} type='tertiary'>
+				<Button onClick={handleClick('es')} variant='tertiary'>
 					<img src={es} alt='Spain flag' />
 					ES
 				</Button>
-				<Button onClick={handleClick('en')} type='tertiary'>
+				<Button onClick={handleClick('en')} variant='tertiary'>
 					<img src={en} alt='United Kingdom flag' />
 					EN
 				</Button>

@@ -8,13 +8,15 @@ export const Button: FC<TButton> = ({
 	className,
 	children,
 	link,
-	onClick,
-	type = 'primary',
+	variant = 'primary',
+	...props
 }) => {
 	if (link) {
 		return (
 			<Link
-				className={`${styles.button} ${styles[`button__${type}`]} ${className}`}
+				className={`${styles.button} ${
+					styles[`button__${variant}`]
+				} ${className}`}
 				{...link}
 			>
 				{children}
@@ -23,8 +25,10 @@ export const Button: FC<TButton> = ({
 	} else {
 		return (
 			<button
-				className={`${styles.button} ${styles[`button__${type}`]} ${className}`}
-				onClick={onClick}
+				className={`${styles.button} ${
+					styles[`button__${variant}`]
+				} ${className}`}
+				{...props}
 			>
 				{children}
 			</button>

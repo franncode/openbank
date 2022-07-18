@@ -1,10 +1,13 @@
-import { MouseEventHandler, ReactNode } from 'react'
+import { DetailedHTMLProps, MouseEventHandler, ReactNode } from 'react'
 import { LinkProps } from 'react-router-dom'
 
-export type TButton = {
+export type TButton = DetailedHTMLProps<
+	React.ButtonHTMLAttributes<HTMLButtonElement>,
+	HTMLButtonElement
+> & {
 	className?: string
 	children: ReactNode
 	link?: LinkProps
 	onClick?: MouseEventHandler<HTMLButtonElement> | undefined
-	type?: 'disabled' | 'loading' | 'primary' | 'secondary' | 'tertiary'
+	variant?: 'disabled' | 'loading' | 'primary' | 'secondary' | 'tertiary'
 }
