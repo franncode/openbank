@@ -1,7 +1,13 @@
+@import '../../../../styles/theme.scss';
+
 .texts {
 	display: flex;
 	flex-direction: column;
 	max-width: 50rem;
+
+	& > b {
+		font-family: $font-family-primary;
+	}
 }
 
 .cards {
