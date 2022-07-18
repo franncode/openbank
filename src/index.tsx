@@ -1,4 +1,5 @@
 import './styles/global.scss'
+import { createRoot } from 'react-dom/client'
 import {
 	BrowserRouter,
 	Routes,
@@ -8,7 +9,6 @@ import {
 } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker'
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { One } from './components/pages/create/1/1'
 import { Home } from './components/pages/home/home'
 import { NotFound } from './components/pages/notFound/notFound'
@@ -16,7 +16,9 @@ import { Two } from './components/pages/create/2/2'
 import { Three } from './components/pages/create/3/3'
 import { Locator } from './components/atoms/locator/locator'
 
-ReactDOM.render(
+const container = document.getElementById('root')
+const root = createRoot(container!)
+root.render(
 	<BrowserRouter>
 		<Routes>
 			<Route index element={<Navigate to='/en' />} />
@@ -32,8 +34,7 @@ ReactDOM.render(
 				<Route path='*' element={<Navigate to='not-found' />} />
 			</Route>
 		</Routes>
-	</BrowserRouter>,
-	document.getElementById('root')
+	</BrowserRouter>
 )
 
 serviceWorker.unregister()
