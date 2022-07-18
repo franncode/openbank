@@ -1,7 +1,16 @@
 // Rules:
+
+import { TBusinessRule } from '../business.types'
+
 // Maximum 255 characters
-const respect = (clue: string): boolean => clue.length <= 255
+const check = (clue: string): TBusinessRule =>
+	clue.length <= 255
+		? { ok: true }
+		: {
+				ok: false,
+				error: 'Maximum 255 characters',
+		  }
 
 export const clue = {
-	respect,
+	check,
 }
