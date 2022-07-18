@@ -1,146 +1,65 @@
-import React, {
-	ChangeEvent,
-	KeyboardEvent,
-	FC,
-	Fragment,
-	useState,
-} from 'react'
+import React, { ChangeEvent, FC, Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { business } from '../../../../business/business'
+import { useImmerReducer } from 'use-immer'
 import { services } from '../../../../services/services'
 import { theme } from '../../../../styles/theme'
 import { Icon } from '../../../atoms/icon/icon'
 import { Input } from '../../../atoms/input/input'
 import { Stepper } from '../../../templates/stepper/stepper'
 import styles from './2.module.scss'
+import { initialState, reducer } from './2.reducer'
+import { ActionType } from './2.types'
 
 export const Two: FC = () => {
 	const navigate = useNavigate()
 	const { t } = useTranslation()
-	const [status, setStatus] = useState<'disabled' | 'idle' | 'loading'>(
-		'disabled'
-	)
-	const [password, setPassword] = useState({
-		clue: '',
-		first: {
-			show: false,
-			value: '',
-		},
-		second: {
-			error: '',
-			show: false,
-			value: '',
-		},
-	})
+	const [state, dispatch] = useImmerReducer(reducer, initialState)
+	const { clue, first, second, status } = state
 	const isLoading = status === 'loading'
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target
-		setPassword((password) => ({
-			...password,
-			[name]: {
-				...password[name as 'first' | 'second'],
-				value,
-			},
-		}))
-
-		if (name === 'first' || name === 'second') {
-			const isRespectPassword = business.password.respect(value)
-			const areSamePassword = business.password.arSame(
-				name === 'first' ? value : password.first.value,
-				name === 'second' ? value : password.second.value
-			)
-			setPassword((password) => ({
-				...password,
-				second: {
-					...password.second,
-					error: areSamePassword ? '' : 'Tu contraseña maestra no coincide',
+		if (name === 'clue') {
+			dispatch({ type: ActionType.SET_CLUE_VALUE, payload: { value } })
+		} else {
+			dispatch({
+				type: ActionType.SET_PASSWORD_VALUE,
+				payload: {
+					name: name as 'first' | 'second',
+					value,
 				},
-			}))
-			if (isRespectPassword && areSamePassword) setStatus('idle')
-			else setStatus('disabled')
-		}
-	}
-
-	const handleKeyDownClue = (event: KeyboardEvent<HTMLInputElement>) => {
-		if (business.clue.respect(password.clue) && event.key !== 'Backspace') {
-			event.preventDefault()
+			})
 		}
 	}
 
 	const handleNext = async () => {
 		try {
-			setStatus('loading')
+			dispatch({
+				type: ActionType.SET_STATUS_VALUE,
+				payload: { value: 'loading' },
+			})
 
 			const response = await services.form.submit(
-				password.first.value,
-				password.second.value,
-				password.clue
+				first.value,
+				second.value,
+				clue
 			)
 			const status = response.status === 200 ? 'success' : 'error'
-			navigate(`../3?status=${status}`, { replace: true })
+			navigate(`../3?status=${status}`)
 		} catch (error) {
-			console.log(error)
-		} finally {
-			setStatus('idle')
+			alert(error)
 		}
 	}
 
 	const handleShowPassword = (name: 'first' | 'second') => () => {
-		setPassword((password) => ({
-			...password,
-			[name]: {
-				...password[name],
-				show: !password[name].show,
+		dispatch({
+			type: ActionType.SWITCH_SHOW_PASSWORD,
+			payload: {
+				name,
 			},
-		}))
+		})
 	}
-
-	const handleBlurSecondPassword = () => {
-		const areSamePassword = business.password.arSame(
-			password.first.value,
-			password.second.value
-		)
-		switch (true) {
-			case !areSamePassword:
-				setPassword((password) => ({
-					...password,
-					second: {
-						...password.second,
-						error: 'Tu contraseña maestra no coincide',
-					},
-				}))
-				break
-			case !password.second.value:
-				setPassword((password) => ({
-					...password,
-					second: {
-						...password.second,
-						error: 'Campo obligatorio',
-					},
-				}))
-				break
-			default:
-				setPassword((password) => ({
-					...password,
-					second: {
-						...password.second,
-						error: '',
-					},
-				}))
-				break
-		}
-	}
-
-	const handleKeyDownSecondPassword = () =>
-		setPassword((password) => ({
-			...password,
-			second: {
-				...password.second,
-				error: '',
-			},
-		}))
 
 	return (
 		<Stepper
@@ -188,8 +107,9 @@ export const Two: FC = () => {
 				<span className={styles.passwords}>
 					<Input
 						className={styles.input}
+						error={first.error}
 						icon={{
-							code: password.first.show ? 'visibility_off' : 'visibility',
+							code: first.show ? 'visibility_off' : 'visibility',
 							color: theme.color.secondary_superlight,
 							onClick: handleShowPassword('first'),
 						}}
@@ -197,25 +117,23 @@ export const Two: FC = () => {
 						name='first'
 						onChange={handleChange}
 						placeholder={t('Password')}
-						type={password.first.show ? 'text' : 'password'}
-						value={password.first.value}
+						type={first.show ? 'text' : 'password'}
+						value={first.value}
 					/>
 					<Input
 						className={styles.input}
 						icon={{
-							code: password.second.show ? 'visibility_off' : 'visibility',
+							code: second.show ? 'visibility_off' : 'visibility',
 							color: theme.color.secondary_superlight,
 							onClick: handleShowPassword('second'),
 						}}
-						error={password.second.error}
+						error={second.error}
 						label={t('Repeat your Master Password')}
 						name='second'
-						onBlur={handleBlurSecondPassword}
 						onChange={handleChange}
-						onKeyDown={handleKeyDownSecondPassword}
 						placeholder={t('Repeat your password')}
-						type={password.second.show ? 'text' : 'password'}
-						value={password.second.value}
+						type={second.show ? 'text' : 'password'}
+						value={second.value}
 					/>
 				</span>
 			</section>
@@ -227,6 +145,7 @@ export const Two: FC = () => {
 				</p>
 				<Input
 					className={styles.input}
+					error={clue.error}
 					label={
 						<span className={styles.label}>
 							<p>
@@ -237,9 +156,8 @@ export const Two: FC = () => {
 					}
 					name='clue'
 					onChange={handleChange}
-					onKeyDown={handleKeyDownClue}
 					placeholder={t('Enter your hint')}
-					value={password.clue}
+					value={clue.value}
 				/>
 			</section>
 		</Stepper>
