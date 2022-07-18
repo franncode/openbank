@@ -2,7 +2,7 @@ import React, { FC, Fragment } from 'react'
 import { TSteps } from './steps.types'
 import styles from './steps.module.scss'
 import { Icon } from '../icon/icon'
-import { color_white } from '../../../styles/theme'
+import { theme } from '../../../styles/theme'
 
 export const Steps: FC<TSteps> = ({ current, steps }) => {
 	return (
@@ -34,7 +34,7 @@ export const Steps: FC<TSteps> = ({ current, steps }) => {
 								}`}
 							>
 								{isCompleted ? (
-									<Icon code='done' color={color_white} />
+									<Icon code='done' color={theme.color.white} />
 								) : (
 									number
 								)}

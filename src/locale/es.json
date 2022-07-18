@@ -15,6 +15,23 @@
 		"For example, your card number, the PIN and PUK of your mobile phone, the serial number of one of your devices or any information you need to have in a safe place.": "Por ejemplo, el número de tu tarjeta, el PIN y el PUK de tu teléfono móvil, el número de serie de alguno de tus dispositivos o cualquier infomación que necesites tener en lugar seguro.",
 		"This page does not exist or has been removed, we suggest you return to the beginning": "Esta pagina no existe o ha sido removida, te sugerimos volver al inicio.",
 		"Page not found": "Pagina no encontrada",
-		"Go to start": "Ir al inicio"
+		"Go to start": "Ir al inicio",
+		"Create your Master Password": "Crea tu Contraseña Maestra",
+		"Back": "Volver",
+		"Loading...": "Cargando...",
+		"Repeat your Master Password": "Repite tu Contraseña Maestra",
+		"Repeat your password": "Repite tu contraseña",
+		"Password": "Contraseña",
+		"You can also create a hint to help you remember your master password.": "También puedes crear una pista que te ayude a recordar tu contraseña maestra.",
+		"Create your hint to remember your password (optional)": "Crea tu pista para recordar tu contraseña (opcional)",
+		"Enter your hint": "Introduce tu pista",
+		"Your Password Manager is already created!": "Tu Password Manager ya está creado!",
+		"Your account has been created successfully. You can now log in.": "Su cuenta ha sido creada con éxito. Ahora puede iniciar sesión.",
+		"We were unable to modify your Master Password. Try again later.": "No hemos podido modificar tu Contraseña Maestra. Inténtalo más tarde.",
+		"": "",
+		"An error has occured": "Ha habido un error",
+		"Log in": "Acceder",
+		"Back to Password Manager": "Volver a Password Manager",
+		"Ended process": "Proceso finalizado"
 	}
 }

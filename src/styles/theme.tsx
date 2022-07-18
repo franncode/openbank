@@ -1,9 +1,13 @@
-export const color_black = '#000000'
-export const color_cyan = '#00c3dd'
-export const color_primary = '#ff0049'
-export const color_secondary_light = '#758f9b'
-export const color_secondary_superlight = '#cbd5da'
-export const color_secondary_ultralight = '#f5f5f5'
-export const color_secondary = '#002b45'
-export const color_terciary = '#fff1e5'
-export const color_white = '#ffffff'
+export const theme = {
+	color: {
+		black: '#000000',
+		cyan: '#00c3dd',
+		primary: '#ff0049',
+		secondary_light: '#758f9b',
+		secondary_superlight: '#cbd5da',
+		secondary_ultralight: '#f5f5f5',
+		secondary: '#002b45',
+		terciary: '#fff1e5',
+		white: '#ffffff',
+	},
+}

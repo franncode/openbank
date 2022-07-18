@@ -1,44 +1,49 @@
 import React, { FC, Fragment } from 'react'
-import { color_primary } from '../../../../styles/theme'
 import { Banner } from '../../../atoms/banner/banner'
 import { Icon } from '../../../atoms/icon/icon'
 import { Stepper } from '../../../templates/stepper/stepper'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { TBanner } from '../../../atoms/banner/banner.types'
+import { useTranslation } from 'react-i18next'
+import { theme } from '../../../../styles/theme'
 
 export const Three: FC = () => {
-	const [searchParams] = useSearchParams()
 	const { language } = useParams()
+	const { t } = useTranslation()
+	const [searchParams] = useSearchParams()
+	const status = searchParams.get('status')
 
 	const bannerProps: TBanner =
-		searchParams.get('status') === 'success'
+		status === 'success'
 			? {
-					description:
-						'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh.',
-					title: 'Tu Password Manager ya está creado!',
+					description: t(
+						'Your account has been created successfully. You can now log in.'
+					),
+					title: t('Your Password Manager is already created!'),
 					type: 'success',
 			  }
 			: {
-					description:
-						'No hemos podido modificar tu Contraseña Maestra. Inténtalo más tarde.',
-					title: 'Ha habido un error',
+					description: t(
+						'We were unable to modify your Master Password. Try again later.'
+					),
+					title: t('An error has occured'),
 					type: 'error',
 			  }
 	const buttonProps =
-		searchParams.get('status') === 'success'
+		status === 'success'
 			? {
 					children: (
 						<Fragment>
-							Acceder
-							<Icon code='navigate_next' color={color_primary} />
+							{t('Log in')}
+							<Icon code='navigate_next' color={theme.color.primary} />
 						</Fragment>
 					),
 			  }
 			: {
 					children: (
 						<Fragment>
-							Volver a Password Manager
-							<Icon code='navigate_next' color={color_primary} />
+							{t('Back to Password Manager')}
+							<Icon code='navigate_next' color={theme.color.primary} />
 						</Fragment>
 					),
 			  }
@@ -46,7 +51,7 @@ export const Three: FC = () => {
 	return (
 		<Stepper
 			head={{
-				title: 'Password Manager | Proceso finalizado',
+				title: `Password Manager | ${t('Ended process')}`,
 			}}
 			buttons={[
 				{

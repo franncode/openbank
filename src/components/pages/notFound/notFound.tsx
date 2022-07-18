@@ -1,5 +1,4 @@
 import React from 'react'
-import { color_white } from '../../../styles/theme'
 import { Button } from '../../atoms/button/button'
 import { Icon } from '../../atoms/icon/icon'
 import { Blank } from '../../templates/blank/blank'
@@ -8,6 +7,7 @@ import styles from './notFound.module.scss'
 import { Banner } from '../../atoms/banner/banner'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { theme } from '../../../styles/theme'
 
 export const NotFound = () => {
 	const { language } = useParams()
@@ -29,8 +29,8 @@ export const NotFound = () => {
 				type='warning'
 			/>
 			<Button className={styles.button} link={{ to: `/${language}` }}>
-				{t('Go to start') as string}
-				<Icon code='navigate_next' color={color_white} />
+				{t('Go to start')}
+				<Icon code='navigate_next' color={theme.color.white} />
 			</Button>
 		</Blank>
 	)

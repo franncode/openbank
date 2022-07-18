@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-import { color_white } from '../../../styles/theme'
 import { Button } from '../../atoms/button/button'
 import { Icon } from '../../atoms/icon/icon'
 import { Blank } from '../../templates/blank/blank'
@@ -8,6 +7,7 @@ import styles from './home.module.scss'
 import { useTranslation } from 'react-i18next'
 import en from '../../../assets/components/pages/home/en.png'
 import es from '../../../assets/components/pages/home/es.png'
+import { theme } from '../../../styles/theme'
 
 export const Home = () => {
 	const { t } = useTranslation()
@@ -36,7 +36,7 @@ export const Home = () => {
 				</div>
 				<Button className={styles.button} link={{ to: `create/1` }}>
 					<>
-						{t('Start')} <Icon code='navigate_next' color={color_white} />
+						{t('Start')} <Icon code='navigate_next' color={theme.color.white} />
 					</>
 				</Button>
 			</section>

@@ -5,15 +5,11 @@ import React, {
 	Fragment,
 	useState,
 } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { business } from '../../../../business/business'
 import { services } from '../../../../services/services'
-import {
-	color_cyan,
-	color_secondary_light,
-	color_secondary_superlight,
-	color_white,
-} from '../../../../styles/theme'
+import { theme } from '../../../../styles/theme'
 import { Icon } from '../../../atoms/icon/icon'
 import { Input } from '../../../atoms/input/input'
 import { Stepper } from '../../../templates/stepper/stepper'
@@ -21,6 +17,7 @@ import styles from './2.module.scss'
 
 export const Two: FC = () => {
 	const navigate = useNavigate()
+	const { t } = useTranslation()
 	const [status, setStatus] = useState<'disabled' | 'idle' | 'loading'>(
 		'disabled'
 	)
@@ -147,21 +144,25 @@ export const Two: FC = () => {
 	return (
 		<Stepper
 			head={{
-				title: 'Password Manager | Crea tu Contraseña Maestra',
+				title: `Password Manager | ${t('Create your Master Password')}`,
 			}}
 			buttons={[
 				{
-					children: 'Volver',
+					children: t('Back'),
 					onClick: () => navigate(-1),
 					type: 'secondary',
 				},
 				{
 					children: (
 						<Fragment>
-							{status === 'loading' ? 'Cargando...' : 'Siguiente'}
+							{status === 'loading' ? t('Loading...') : t('Next')}
 							<Icon
 								code='navigate_next'
-								color={status === 'idle' ? color_white : color_secondary_light}
+								color={
+									status === 'idle'
+										? theme.color.white
+										: theme.color.secondary_light
+								}
 							/>
 						</Fragment>
 					),
@@ -175,26 +176,26 @@ export const Two: FC = () => {
 				},
 			]}
 			current={2}
-			title='Crea tu Password Manager'
+			title={t('Create your Password Manager')}
 		>
 			<section className={styles.section}>
 				<p className={styles.texts}>
-					En primer lugar, debes crear una contraseña diferente para sus
-					pertenencias electrónicas. No podrás recuperar tu contraseña, asi que
-					recuérdala bien.
+					{t(
+						'First of all, you need to create a different password for your electronic belongings. You will not be able to recover your password, so remember it well.'
+					)}
 				</p>
 				<span className={styles.passwords}>
 					<Input
 						className={styles.input}
 						icon={{
 							code: 'visibility',
-							color: color_secondary_superlight,
+							color: theme.color.secondary_superlight,
 							onClick: handleShowPassword('first'),
 						}}
-						label='Crea tu Contraseña Maestra'
+						label={t('Create your Master Password')}
 						name='first'
 						onChange={handleChange}
-						placeholder='Contraseña'
+						placeholder={t('Password')}
 						type={password.first.show ? 'text' : 'password'}
 						value={password.first.value}
 					/>
@@ -202,16 +203,16 @@ export const Two: FC = () => {
 						className={styles.input}
 						icon={{
 							code: 'visibility',
-							color: color_secondary_superlight,
+							color: theme.color.secondary_superlight,
 							onClick: handleShowPassword('second'),
 						}}
 						error={password.second.error}
-						label='Repite tu Contraseña Maestra'
+						label={t('Repeat your Master Password')}
 						name='second'
 						onBlur={handleBlurSecondPassword}
 						onChange={handleChange}
 						onKeyDown={handleKeyDownSecondPassword}
-						placeholder='Repite tu contraseña'
+						placeholder={t('Repeat your password')}
 						type={password.second.show ? 'text' : 'password'}
 						value={password.second.value}
 					/>
@@ -219,21 +220,24 @@ export const Two: FC = () => {
 			</section>
 			<section className={styles.section}>
 				<p className={styles.texts}>
-					También puedes crear una pista que te ayude a recordar tu contraseña
-					maestra.
+					{t(
+						'You can also create a hint to help you remember your master password.'
+					)}
 				</p>
 				<Input
 					className={styles.input}
 					label={
 						<span className={styles.label}>
-							<p>Crea tu pista para recordar tu contraseña (opcional)</p>
-							<Icon code='info' color={color_cyan} />
+							<p>
+								{t('Create your hint to remember your password (optional)')}
+							</p>
+							<Icon code='info' color={theme.color.cyan} />
 						</span>
 					}
 					name='clue'
 					onChange={handleChange}
 					onKeyDown={handleKeyDownClue}
-					placeholder='Introduce tu pista'
+					placeholder={t('Enter your hint')}
 					value={password.clue}
 				/>
 			</section>
