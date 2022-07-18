@@ -37,4 +37,4 @@ root.render(
 	</BrowserRouter>
 )
 
-serviceWorker.unregister()
+serviceWorker.register()
