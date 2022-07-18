@@ -9,10 +9,9 @@ export const Input: FC<TInput> = ({
 	error,
 	icon,
 	label,
-	width,
 	...inputProps
 }) => (
-	<label className={`${styles.label} ${className}`} style={{ width }}>
+	<label className={`${styles.label} ${className}`}>
 		{label}
 		<span className={styles.box}>
 			<input className={styles.input} {...inputProps} />

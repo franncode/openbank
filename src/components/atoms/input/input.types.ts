@@ -9,5 +9,4 @@ export type TInput = DetailedHTMLProps<
 	error?: string
 	icon?: TIcon
 	label?: ReactNode
-	width?: string
 }
