@@ -1,9 +1,9 @@
 @font-face {
 	font-family: 'Mark Book';
 	src: local('Mark Book'), local('Mark-Book'),
-		url('./fonts/Mark-Book.woff2') format('woff2'),
-		url('./fonts/Mark-Book.woff') format('woff'),
-		url('./fonts/Mark-Book.ttf') format('truetype');
+		url('../assets/fonts/Mark-Book.woff2') format('woff2'),
+		url('../assets/fonts/Mark-Book.woff') format('woff'),
+		url('../assets/fonts/Mark-Book.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -11,9 +11,9 @@
 @font-face {
 	font-family: 'Mark Bold';
 	src: local('Mark Bold'), local('Mark-Bold'),
-		url('./fonts/Mark-Bold.woff2') format('woff2'),
-		url('./fonts/Mark-Bold.woff') format('woff'),
-		url('./fonts/Mark-Bold.ttf') format('truetype');
+		url('../assets/fonts/Mark-Bold.woff2') format('woff2'),
+		url('../assets/fonts/Mark-Bold.woff') format('woff'),
+		url('../assets/fonts/Mark-Bold.ttf') format('truetype');
 	font-weight: 700;
 	font-style: normal;
 }
